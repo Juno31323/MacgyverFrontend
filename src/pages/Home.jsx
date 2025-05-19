@@ -8,6 +8,8 @@ import CalcHeratRate from '../components/CalcHeartRate';
 import CalcAge from '../components/CalcAge';
 import CalcCoordDistance from '../components/CalcCoordDistance';
 import CalcLoan from '../components/CalcLoan';
+import CheckMyIp from '../components/CheckMyIp';
+import ConvTemp from '../components/ConvTemp';
 
 export default function Home() {
     return (
@@ -22,6 +24,8 @@ export default function Home() {
             <CalcAge />
             <CalcCoordDistance />
             <CalcLoan />
+            <CheckMyIp />
+            <ConvTemp />
           </div>
         </Layout>
       );

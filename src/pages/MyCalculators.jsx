@@ -8,6 +8,9 @@ import CalcNormalWeight from '../components/CalcNormalWeight';
 import CalcHeratRate from '../components/CalcHeartRate';
 import CalcAge from '../components/CalcAge';
 import CalcCoordDistance from '../components/CalcCoordDistance';
+import CalcLoan from '../components/CalcLoan';
+import CheckMyIp from '../components/CheckMyIp';
+import ConvTemp from '../components/ConvTemp';
 
 export default function MyCalculators() {
 
@@ -19,7 +22,10 @@ export default function MyCalculators() {
         { id: 'normalWeight', label: '정상체중 계산기' , component: <CalcNormalWeight />},
         { id: 'heartRate', label: '목표심박수 계산기' , component: <CalcHeratRate />},
         { id: 'age', label: '만 나이 계산기' , component: <CalcAge />},
-        { id: 'Distance', label: '좌표거리 계산기' , component: <CalcCoordDistance />}
+        { id: 'distance', label: '좌표거리 계산기' , component: <CalcCoordDistance />},
+        { id: 'loan', label: '대출이자 계산기' , component: <CalcLoan />},
+        { id: 'IP', label: '나의 IP 확인' , component: <CheckMyIp />},
+        { id: 'temp', label: '온도변환기' , component: <ConvTemp />}
       ];
     
     const [selected, setSelected] = useState(['']);

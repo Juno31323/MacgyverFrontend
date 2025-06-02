@@ -20,6 +20,13 @@ export default function ConvTemp() {
 
     return (
         <>
+        <Helmet>
+          <title>온도 단위 변환기 - 맥가이버 계산기</title>
+          <meta name="description" content= "다양한 온도 단위를 손쉽게 변환하세요. 빠르고 정확한 온도 변환기!" />
+          <meta name="keywords" content= "온도변환,섭씨,화씨,온도계산기,온도단위,섭씨화씨변환" />
+          <meta property="og:title" content="온도 단위 변환기 - 맥가이버 계산기" />
+          <meta property="og:description" content="여러 온도 단위를 간편하게 변환해 드립니다." />
+        </Helmet>
         <div 
         onClick={() => setOpen(true)}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

@@ -14,6 +14,13 @@ export default function CalcChildbearing() {
 
     return (
         <>
+        <Helmet>
+          <title>가임기 계산기 - 맥가이버 계산기</title>
+          <meta name="description" content= "마지막 생리일과 생리주기를 입력하면 가임기를 알려드립니다. 정확하고 간단한 가임기 계산기!" />
+          <meta name="keywords" content= "가임기,배란일,생리주기,가임기계산기,임신확률" />
+          <meta property="og:title" content="가임기 계산기 - 맥가이버 계산기" />
+          <meta property="og:description" content="마지막 생리일과 생리주기를 입력하면 가임기를 계산해 드립니다." />
+        </Helmet>
         <div 
         onClick={() => setOpen(true)}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

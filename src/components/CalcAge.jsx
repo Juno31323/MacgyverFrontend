@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { calculateAge } from '../utils/age';
+import { Helmet } from 'react-helmet';
 
 export default function CalcAge() {
     const [open, setOpen] = useState(false);
@@ -13,6 +14,14 @@ export default function CalcAge() {
 
     return (
         <>
+        <Helmet>
+          <title>나이 계산기 - 맥가이버 계산기</title>
+          <meta name="description" content="생년월일로 만 나이, 세는 나이, 연 나이를 계산해보세요. 정확한 나이 계산기입니다." />
+          <meta name="keywords" content="나이계산기,만나이계산,세는나이,연나이,생년월일" />
+          <meta property="og:title" content="나이 계산기 - 맥가이버 계산기" />
+          <meta property="og:description" content="생년월일로 다양한 나이를 계산해보세요." />
+        </Helmet>
+        
         <div 
         onClick={() => setOpen(true)}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

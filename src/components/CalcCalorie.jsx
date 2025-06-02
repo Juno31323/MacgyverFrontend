@@ -15,6 +15,13 @@ export default function CalcCalorie() {
 
     return(
         <>
+        <Helmet>
+          <title>소모 칼로리리 계산기 - 맥가이버 계산기</title>
+          <meta name="description" content="운동 별 칼로리 소모량을 계산해 보세요" />
+          <meta name="keywords" content="운동, 칼로리, 다이어트, 키, 몸무게" />
+          <meta property="og:title" content="소모 칼로리 계산기 - 맥가이버 계산기" />
+          <meta property="og:description" content="운동 별 칼로리 소모량을 계산해 보세요." />
+        </Helmet>
         <div 
         onClick={() => setOpen(true)}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

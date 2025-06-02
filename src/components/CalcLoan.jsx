@@ -17,6 +17,13 @@ export default function CalcLoan() {
 
     return (
         <>
+        <Helmet>
+          <title>이자 계산기 - 맥가이버 계산기</title>
+          <meta name="description" content= "대출 금액, 기간, 이자율을 입력하면 월 납입금과 총 이자, 총 납부금을 계산해드립니다" />
+          <meta name="keywords" content= "이자계산기,대출계산기,월납입금,총이자,대출이자계산기,금융계산기" />
+          <meta property="og:title" content="이자 계산기 - 맥가이버 계산기" />
+          <meta property="og:description" content="대출 전 확인! 월 납입금과 총 이자를 정확하게 계산해보세요." />
+        </Helmet>
         <div 
         onClick={() => setOpen(true)}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

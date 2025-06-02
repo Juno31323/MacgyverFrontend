@@ -13,6 +13,13 @@ export default function CalcHeratRate() {
 
     return (
         <>
+        <Helmet>
+          <title>목표 심박수 계산기 - 맥가이버 계산기</title>
+          <meta name="description" content= "나이를 입력하고 나이 맞는 목표 심박수를 계산해 보세요" />
+          <meta name="keywords" content= "심박수, 나이, 건강, 정상심박수수" />
+          <meta property="og:title" content="목표 심박수 계산기 - 맥가이버 계산기" />
+          <meta property="og:description" content="나이를 입력하면 목표 심박수를 계산해 드립니다." />
+        </Helmet>
         <div 
         onClick={() => setOpen(true)}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

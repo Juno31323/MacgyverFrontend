@@ -11,6 +11,13 @@ export default function CheckMyIp() {
       };
     return (
         <>
+        <Helmet>
+          <title>내 IP 주소 확인 - 맥가이버 계산기</title>
+          <meta name="description" content= "지금 접속중인 내 IP주소를 확인해보세요. 클릭 한번으로 바로 확인 가능합니다." />
+          <meta name="keywords" content= "IP확인,내IP주소,공인IP,IP주소확인,IP조회" />
+          <meta property="og:title" content="내 IP 주소 확인 - 맥가이버 계산기" />
+          <meta property="og:description" content="클릭 한번으로 내 IP주소를 확인해 보세요." />
+        </Helmet>
         <div 
         onClick={() => setOpen(true)}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

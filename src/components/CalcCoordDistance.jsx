@@ -14,6 +14,13 @@ export default function CalcCoordDistance() {
 
     return (
         <>
+        <Helmet>
+          <title>좌표 거리 계산기 - 맥가이버 계산기</title>
+          <meta name="description" content= "두 지점의 좌표를 입력하면 좌표 간 거리를 계산합니다. 실시간 좌표 거리 계산기!" />
+          <meta name="keywords" content= "좌표거리계산기,두점거리,x,y좌표계산,거리측정" />
+          <meta property="og:title" content="좌표 거리 계산기 - 맥가이버 계산기" />
+          <meta property="og:description" content="시작점과 끝점 좌표를 입력하면 두 좌표간의 거리를 계산해 드립니디." />
+        </Helmet>
         <div 
         onClick={() => setOpen(true)}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

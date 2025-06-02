@@ -16,6 +16,13 @@ export default function CalcBMR() {
 
   return (
     <>
+      <Helmet>
+        <title>BMR 계산기 - 맥가이버 계산기</title>
+        <meta name="description" content="키와 몸무게로 본인의 BMR, 예상 기초대사량을 계산해 보세요" />
+        <meta name="keywords" content="기초대사량, BMR, 키, 몸무게" />
+        <meta property="og:title" content="BMR 계산기 - 맥가이버 계산기" />
+        <meta property="og:description" content="키와 몸무게로 기초대사량을 계산해 보세요." />
+      </Helmet>
       <div
         onClick={() => setOpen(true)}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer"

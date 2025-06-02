@@ -14,6 +14,13 @@ export default function CalcBMI() {
 
   return (
     <>
+      <Helmet>
+        <title>BMI 계산기 - 맥가이버 계산기</title>
+        <meta name="description" content="키와 몸무게로 본인의 BMI를 계산해보세요." />
+        <meta name="keywords" content="BMI, 정상체중, 키, 몸무게" />
+        <meta property="og:title" content="BMI 계산기 - 맥가이버 계산기" />
+        <meta property="og:description" content="키와 몸무게로 BMI를 계산해보세요." />
+      </Helmet>
       <div onClick={() => setOpen(true)} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">
         <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">💰</div>
         <h3 className="text-lg font-semibold mb-2">BMI 계산기</h3>

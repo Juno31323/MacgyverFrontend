@@ -11,6 +11,9 @@ import CalcCoordDistance from '../components/CalcCoordDistance';
 import CalcLoan from '../components/CalcLoan';
 import CheckMyIp from '../components/CheckMyIp';
 import ConvTemp from '../components/ConvTemp';
+import CalcCarpoor from '../components/CalcCarpoor';
+import CalcHistory from '../components/CalcHistory';
+import CalcLotto from '../components/CalcLotto';
 
 export default function MyCalculators() {
 
@@ -25,7 +28,11 @@ export default function MyCalculators() {
         { id: 'distance', label: '좌표거리 계산기' , component: <CalcCoordDistance />},
         { id: 'loan', label: '대출이자 계산기' , component: <CalcLoan />},
         { id: 'IP', label: '나의 IP 확인' , component: <CheckMyIp />},
-        { id: 'temp', label: '온도변환기' , component: <ConvTemp />}
+        { id: 'temp', label: '온도변환기' , component: <ConvTemp />},
+		{ id: 'carpoor', label: '카푸어 계산기', component: <CalcCarpoor />},
+		{ id: 'histoy', label: '히스토리', component: <CalcHistory />},
+		{ id: 'lotto', label: '로또 추출기', component: <CalcLotto />}
+		
       ];
     
     const [selected, setSelected] = useState(['']);

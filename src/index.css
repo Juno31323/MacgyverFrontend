@@ -8,9 +8,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: white;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #393939;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -45,7 +45,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: rgb(219 234 254);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -59,7 +59,7 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: #efefef;
     background-color: #ffffff;
   }
   a:hover {
@@ -108,3 +108,11 @@ button:focus-visible {
 .input {
   border: black solid 3px;
 }
+.resultTable{display: flex; justify-content: center;}
+.Carousel{display: flex; overflow: hidden; width: 300px;}
+.slide{display: flex; justify-content: center; align-items: center;}
+.hidden{display: none;}
+.model{width: 300px;}
+#country{text-align: center;}
+.slidesContainer{display: flex; justify-content: center; align-items: center;}
+.slide-wrapper{position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 3px;}

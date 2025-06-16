@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { calculateCalorie } from '../utils/calorieConsumptionMeters';
+import { Helmet } from 'react-helmet';
 
 export default function CalcCalorie() {
     const [open, setOpen] = useState(false);

@@ -10,6 +10,12 @@ import CalcCoordDistance from '../components/CalcCoordDistance';
 import CalcLoan from '../components/CalcLoan';
 import CheckMyIp from '../components/CheckMyIp';
 import ConvTemp from '../components/ConvTemp';
+import CarSlider from '../components/CarSlider';
+import CalcHistory from '../components/CalcHistory';
+import CalcLotto from '../components/CalcLotto';
+import CarSelector from '../components/CarSelector';
+import CalCarpoor from './CalCarpoor';
+
 
 export default function Home() {
     return (
@@ -26,6 +32,8 @@ export default function Home() {
             <CalcLoan />
             <CheckMyIp />
             <ConvTemp />
+			      <CalCarpoor />
+			      <CalcLotto />
           </div>
         </Layout>
       );

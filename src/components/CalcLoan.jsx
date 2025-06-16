@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { calculateLoan } from '../utils/loan';
 import { useCurrencyInput } from '../hooks/useCurrencyInput';
+import { Helmet } from 'react-helmet';
 
 export default function CalcLoan() {
     const [open, setOpen] = useState(false);

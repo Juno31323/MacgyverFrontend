@@ -10,9 +10,11 @@ import CalcCoordDistance from '../components/CalcCoordDistance';
 import CalcLoan from '../components/CalcLoan';
 import CheckMyIp from '../components/CheckMyIp';
 import ConvTemp from '../components/ConvTemp';
-import CalcCarpoor from '../components/CalcCarpoor';
+import CarSlider from '../components/CarSlider';
 import CalcHistory from '../components/CalcHistory';
 import CalcLotto from '../components/CalcLotto';
+import CarSelector from '../components/CarSelector';
+import CalCarpoor from './CalCarpoor';
 
 
 export default function Home() {
@@ -30,9 +32,8 @@ export default function Home() {
             <CalcLoan />
             <CheckMyIp />
             <ConvTemp />
-			<CalcCarpoor />
-			<CalcHistory />
-			<CalcLotto />
+			      <CalCarpoor />
+			      <CalcLotto />
           </div>
         </Layout>
       );

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { calcultaeTargetHeartRate } from '../utils/targetHeartRate';
+import { Helmet } from 'react-helmet';
 
 export default function CalcHeratRate() {
     const [open, setOpen] = useState(false);

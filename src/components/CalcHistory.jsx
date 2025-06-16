@@ -27,9 +27,9 @@ export default function HistoryList({ title, calValue, onOpenModal }) {
 
   return (
     <div id="historyContainer" className="text-sm space-y-2">
-      {historyList.map((item) => (
+      {historyList.map((item, index) => (
         <div
-          key={item.calValue}
+          key={index}
           className={`${item.calValue} historyModalOpenButton p-2 hover:bg-gray-50 rounded cursor-pointer`}
           onClick={() => handleClick(item)}
         >

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { calculateBMR } from '../utils/BMR';
+import { Helmet } from 'react-helmet';
 
 export default function CalcBMR() {
   const [open, setOpen] = useState(false);
@@ -29,7 +30,7 @@ export default function CalcBMR() {
       >
         <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">💰</div>
         <h3 className="text-lg font-semibold mb-2">BMR 계산기</h3>
-        <p className="text-sm text-gray-500">클릭해서 계산기 열기</p>
+        <p className="text-gray-600">키, 몸무게, 나이 입력</p>
       </div>
 
       {open && (

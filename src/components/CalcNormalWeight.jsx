@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {calculateNormalWeight } from '../utils/normalWeight';
+import { Helmet } from 'react-helmet';
 
 export default function CalcNormalWeight() {
     const [open, setOpen] = useState(false);

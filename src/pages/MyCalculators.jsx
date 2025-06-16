@@ -11,7 +11,7 @@ import CalcCoordDistance from '../components/CalcCoordDistance';
 import CalcLoan from '../components/CalcLoan';
 import CheckMyIp from '../components/CheckMyIp';
 import ConvTemp from '../components/ConvTemp';
-import CalcCarpoor from '../components/CalcCarpoor';
+import CalcCarpoor from '../components/CarSlider';
 import CalcHistory from '../components/CalcHistory';
 import CalcLotto from '../components/CalcLotto';
 
@@ -35,7 +35,7 @@ export default function MyCalculators() {
 		
       ];
     
-    const [selected, setSelected] = useState(['']);
+    const [selected, setSelected] = useState([]);
 
     return (
     <Layout>

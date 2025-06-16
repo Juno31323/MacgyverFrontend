@@ -1,71 +1,70 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { supabase } from '../supabase/client';
 
-export default function Carousel({ koreanModels, foreignModels }) {
-  const [country, setCountry] = useState('koreaCar'); // "koreaCar" 또는 "foreignCar"
+export default function Carousel() {
+  const [country, setCountry] = useState('koreaCar');
+  const [models, setModels] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const containerRef = useRef(null);
 
-  const models = country === 'koreaCar' ? koreanModels : foreignModels;
+  useEffect(() => {
+    async function fetchModels() {
+      const table = country === 'koreaCar' ? 'korea_car' : 'foreign_car';
+      const { data, error } = await supabase.from(table).select('*');
 
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
+      if (error) {
+        console.error('Supabase 에러:', error);
+        setModels([]);
+      } else {
+        setModels(data);
+        setCurrentSlide(0); // 슬라이드 초기화
+      }
+    }
+
+    fetchModels();
+  }, [country]);
 
   useEffect(() => {
     if (containerRef.current) {
-      const slideWidth = containerRef.current.querySelector('.model')?.offsetWidth || 0;
-      containerRef.current.style.transition = 'transform 0.5s ease';
-      containerRef.current.style.transform = `translateX(-${slideWidth * currentSlide}px)`;
+      const slideWidth = containerRef.current.offsetWidth;
+      const inner = containerRef.current.querySelector('.slidesInner');
+      if (inner) {
+        inner.style.transition = 'transform 0.5s ease';
+        inner.style.transform = `translateX(-${slideWidth * currentSlide}px)`;
+      }
     }
-  }, [currentSlide, country]);
+  }, [currentSlide, models]);
 
   const handlePrev = () => {
     const newIndex = currentSlide > 0 ? currentSlide - 1 : models.length - 1;
-    goToSlide(newIndex);
+    setCurrentSlide(newIndex);
   };
 
   const handleNext = () => {
     const newIndex = currentSlide < models.length - 1 ? currentSlide + 1 : 0;
-    goToSlide(newIndex);
+    setCurrentSlide(newIndex);
   };
 
   const handleCountryChange = (e) => {
     setCountry(e.target.value);
-    setCurrentSlide(0); // 초기화
   };
+
+  if (!models || models.length === 0) {
+    return <p className="text-center mt-4">차량 데이터를 불러오는 중입니다...</p>;
+  }
 
   return (
     <div>
-      <select id="country" value={country} onChange={handleCountryChange}>
+      <select
+        id="country"
+        value={country}
+        onChange={handleCountryChange}
+        className="border p-2 mb-4 w-full"
+      >
         <option value="">--국가를 선택해주세요--</option>
         <option value="koreaCar">국산차</option>
         <option value="foreignCar">외제차</option>
       </select>
-
-      <div className="slide-wrapper mt-2">
-        <button className="prev btn" onClick={handlePrev}>◀</button>
-
-        <div className="slides overflow-hidden" style={{ width: '100%', position: 'relative' }}>
-          <div
-            ref={containerRef}
-            className="slidesContainer flex"
-            style={{ width: `${models.length * 100}%` }}
-          >
-            {models.map((model, index) => (
-              <div
-                key={index}
-                className={`model ${index === currentSlide ? 'active' : ''}`}
-                style={{ flex: '0 0 100%', textAlign: 'center' }}
-              >
-                <p>{model.name}</p>
-                <img src={model.image} alt={model.name} style={{ width: '200px', height: 'auto' }} />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <button className="next btn" onClick={handleNext}>▶</button>
-      </div>
     </div>
   );
 }

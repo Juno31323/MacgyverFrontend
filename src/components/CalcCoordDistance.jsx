@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CalculateDistance } from '../utils/distance';
+import { Helmet } from 'react-helmet';
 
 export default function CalcCoordDistance() {
     const [open, setOpen] = useState(false);

@@ -7,6 +7,17 @@ export default function Layout({ children }) {
             SmartTools Pro
           </h1>
           <div className="flex items-center space-x-4">
+          {/* 히스토리 */}
+				    <div className="relative group">
+				      <button className="p-2 hover:bg-gray-100 rounded-full">
+				        🕖︎<span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+				      </button>
+				      <div className="hidden group-hover:block absolute right-0 w-72 bg-white shadow-xl p-4 rounded-lg">
+				        <h3 className="font-semibold mb-2">히스토리</h3>
+				        <div className="text-sm space-y-2" id="historyContainer">
+				        </div>
+				        </div>
+				    </div>
             <div className="relative group">
               <button className="p-2 hover:bg-gray-100 rounded-full">
                 🔔<span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>

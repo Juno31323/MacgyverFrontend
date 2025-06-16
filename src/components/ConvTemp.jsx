@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { tempConversion } from '../utils/tempConversion';
+import { Helmet } from 'react-helmet';
 
 export default function ConvTemp() {
     const [open, setOpen] = useState(false);

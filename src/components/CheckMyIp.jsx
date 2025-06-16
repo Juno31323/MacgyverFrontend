@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { getIp } from '../utils/ipconfig';
+import { Helmet } from 'react-helmet';
 
 export default function CheckMyIp() {
     const [open, setOpen] = useState(false);

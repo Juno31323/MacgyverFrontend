@@ -1,4 +1,4 @@
-export async function carpoor(salary, model, country, historyFn) {
+export async function carpoor(salary, model, country, history) {
   try {
     const response = await fetch('http://localhost:8080/calculate', {
       method: 'POST',
@@ -19,13 +19,14 @@ export async function carpoor(salary, model, country, historyFn) {
       return data.message || '서버 오류가 발생했습니다.';
     }
 
-    // 결과 처리
-    if (historyFn) {
-      historyFn(model); // 선택 모델을 히스토리에 추가
+    // 결과를 히스토리 추가
+    if (history) {
+      history(model);
     }
 
     return data.result || '결과를 받아오지 못했습니다.';
-  } catch (error) {
+  }
+  catch (error) {
     console.error('API 호출 실패:', error);
     return '서버와 연결할 수 없습니다.';
   }

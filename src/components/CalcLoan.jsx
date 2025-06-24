@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { calculateLoan } from '../utils/loan';
 import { useCurrencyInput } from '../hooks/useCurrencyInput';
 import { Helmet } from 'react-helmet';
+import { saveHistory } from '../utils/history';
 
-export default function CalcLoan() {
+export default function CalcLoan({ activeCal, setActiveCal }) {
     const [open, setOpen] = useState(false);
     const [interestRate, setInterestRate ] = useState('');
     const [period, setPeriod ] = useState('');
@@ -14,6 +15,7 @@ export default function CalcLoan() {
     const calculate = () => {
             const loan = calculateLoan( rawValue, interestRate, period );
             setResult( loan );
+
     };
 
     return (
@@ -26,16 +28,21 @@ export default function CalcLoan() {
           <meta property="og:description" content="대출 전 확인! 월 납입금과 총 이자를 정확하게 계산해보세요." />
         </Helmet>
         <div 
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          saveHistory({title : '이자 계산기', calValue : 'calLoan'});
+          setActiveCal('calLoan')
+        }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">
             <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">💰</div>
             <h3 className="text-lg font-semibold mb-2"> 이자 계산기 </h3>
             <p className="text-gray-600"> 대출금, 기간, 이자율 입력 </p>
         </div>
-        {open &&(
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        {activeCal === 'calLoan' &&(
+            <div id='calLoan' className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg w-96 relative">
-              <button onClick={() => setOpen(false)} className="absolute top-3 right-3 text-gray-500">✕</button>
+              <button 
+              onClick={() => setActiveCal('')} // 모달 닫기
+              className="absolute top-3 right-3 text-gray-500">✕</button>
               <h2 className="text-xl font-semibold mb-4"> 이자 계산기 </h2>
               
             <input

@@ -33,7 +33,7 @@ export default function Home() {
             <CheckMyIp />
             <ConvTemp />
 			      <CalCarpoor />
-			      <CalcLotto />
+            <CalcLotto />			      
           </div>
         </Layout>
       );

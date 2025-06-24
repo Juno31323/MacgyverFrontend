@@ -41,8 +41,11 @@ export default function CalCarpoor() {
         <p className="text-gray-600">어디까까지 가능할까?</p>
       </div>
 
-        // 모달 렌더링
-        <LottoModal open={showLottoModal} onClose={() => setShowLottoModal(false)} />
+        {/* // 모달 렌더링 */}
+        {/* 이거 조건문 바꿈, 이렇게 안쓰면 UI에 로또가 2개 떠버림 */}
+        {showLottoModal && (
+        <LottoModal open={true} onClose={() => setShowLottoModal(false)} />
+        )}
 
       {open && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

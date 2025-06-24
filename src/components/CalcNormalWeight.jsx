@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import {calculateNormalWeight } from '../utils/normalWeight';
 import { Helmet } from 'react-helmet';
+import { saveHistory } from '../utils/history';
 
-export default function CalcNormalWeight() {
+
+export default function CalcNormalWeight({ activeCal, setActiveCal }) {
     const [open, setOpen] = useState(false);
     const [ weight, setWeight ] = useState('');
     const [result, setResult] = useState(null);
+
 
     const calculate = () => {
             const normalWeight = calculateNormalWeight(weight);
@@ -22,16 +25,22 @@ export default function CalcNormalWeight() {
           <meta property="og:description" content="키를 입력하면 정상 체중을 계산해 드립니다." />
         </Helmet>
         <div 
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          saveHistory({ title: '정상 체중 계산기', calValue: 'calNormalWeight' });
+          setActiveCal('calNormalWeight');
+
+        }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">
             <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">💰</div>
             <h3 className="text-lg font-semibold mb-2"> 정상 체중 계산기 </h3>
             <p className="text-gray-600"> 키(cm)입력</p>
         </div>
-        {open &&(
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        {activeCal === 'calNormalWeight' &&(
+            <div id='calNormalWeight' className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg w-96 relative">
-              <button onClick={() => setOpen(false)} className="absolute top-3 right-3 text-gray-500">✕</button>
+              <button 
+              onClick={() => setActiveCal('')} // 모달 닫기
+              className="absolute top-3 right-3 text-gray-500">✕</button>
               <h2 className="text-xl font-semibold mb-4"> 정상 체중 계산기 </h2>
             {/* 체중입력 */}
               <input

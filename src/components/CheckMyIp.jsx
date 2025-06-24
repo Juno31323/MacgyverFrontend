@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { getIp } from '../utils/ipconfig';
 import { Helmet } from 'react-helmet';
+import { saveHistory } from '../utils/history';
 
-export default function CheckMyIp() {
-    const [open, setOpen] = useState(false);
+export default function CheckMyIp({ activeCal, setActiveCal }) {
     const [result, setResult] = useState(null);
 
     const calculate = async () => {
@@ -20,16 +20,21 @@ export default function CheckMyIp() {
           <meta property="og:description" content="클릭 한번으로 내 IP주소를 확인해 보세요." />
         </Helmet>
         <div 
-        onClick={() => setOpen(true)}
+        onClick={() => { 
+          saveHistory({ title: '내 IP 주소 확인하기', calValue: 'CheckMyIp' });
+          setActiveCal('CheckMyIp');
+        }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">
             <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">💰</div>
             <h3 className="text-lg font-semibold mb-2"> 내 IP 주소 확인 </h3>
             <p className="text-gray-600">클릭해서 확인</p>
         </div>
-        {open &&(
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        {activeCal == 'CheckMyIp' &&(
+            <div id='CheckMyIp' className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg w-96 relative">
-              <button onClick={() => setOpen(false)} className="absolute top-3 right-3 text-gray-500">✕</button>
+              <button 
+              onClick={() => setActiveCal('')} // 모달 닫기
+              className="absolute top-3 right-3 text-gray-500">✕</button>
               <h2 className="text-xl font-semibold mb-4"> 내 IP 주소 확인 </h2>
   
               <button className="w-full bg-blue-600 text-white p-2 rounded" onClick={calculate}>

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { calculateCalorie } from '../utils/calorieConsumptionMeters';
 import { Helmet } from 'react-helmet';
+import { saveHistory } from '../utils/history'; // DOM용
 
-export default function CalcCalorie() {
+export default function CalcCalorie({ activeCal, setActiveCal }) {
     const [open, setOpen] = useState(false);
     const [excersise, setExcersise] = useState('');
     const [weight, setWeight] = useState('');
@@ -24,16 +25,21 @@ export default function CalcCalorie() {
           <meta property="og:description" content="운동 별 칼로리 소모량을 계산해 보세요." />
         </Helmet>
         <div 
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          saveHistory({ title: '칼로리 계산기', calValue: 'calCalorie' });
+          setActiveCal('calCalorie');
+        }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">
             <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">💰</div>
             <h3 className="text-lg font-semibold mb-2">칼로리 계산기</h3>
             <p className="text-gray-600">체중(kg), 시간(분) 입력</p>
         </div>
-        {open && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        {activeCal === 'calCalorie' && (
+            <div id="calCalorieModal" className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg w-96 relative">
-              <button onClick={() => setOpen(false)} className="absolute top-3 right-3 text-gray-500">✕</button>
+              <button 
+              onClick={() => setActiveCal('')} // 모달 닫기
+              className="absolute top-3 right-3 text-gray-500">✕</button>
               <h2 className="text-xl font-semibold mb-4">칼로리 계산기</h2>
   
               <input
@@ -103,7 +109,10 @@ export default function CalcCalorie() {
                 </label>
               </div>
   
-              <button className="w-full bg-blue-600 text-white p-2 rounded" onClick={calculate}>
+              <button 
+              className="w-full bg-blue-600 text-white p-2 rounded" 
+              id="calCalorie" // id는 history용
+              onClick={calculate}>
                 계산
               </button>
   

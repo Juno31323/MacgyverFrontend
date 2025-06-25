@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import generateLotto from "../utils/lotto.jsx";
+import generateLotto from "../utils/lotto";
 import { Helmet } from "react-helmet";
 
 export default function CalcLotto() {

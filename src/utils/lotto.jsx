@@ -8,7 +8,7 @@ function generateNumbers() {
   }
   return Array.from(set).sort((a, b) => a - b);
 }
-
+//
 //로또 번호 생성 함수
 /**
  * @returns {number[][]} 5세트의 로또 번호 (배열 안의 배열)

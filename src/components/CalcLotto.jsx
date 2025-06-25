@@ -1,5 +1,8 @@
-import { useState } from 'react';
-import { generateLotto as calculateLotto } from '../utils/lotto';
+
+import { useState, useEffect } from "react";
+import generateLotto from "../utils/lotto";
+import { Helmet } from "react-helmet";
+
 
 
 export default function LottoModal({ open, onClose }) {

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { calculateAge } from '../utils/age';
 import { Helmet } from 'react-helmet';
+import { saveHistory } from '../utils/history'; // DOM용
 
-export default function CalcAge() {
+
+export default function CalcAge({ activeCal, setActiveCal }) {
     const [open, setOpen] = useState(false);
     const [birth, setBirth ] = useState('');
     const [result, setResult] = useState(null);
@@ -23,16 +25,28 @@ export default function CalcAge() {
         </Helmet>
         
         <div 
-        onClick={() => setOpen(true)}
+        onClick={() => 
+          {setOpen(true);
+          saveHistory({ title: '나이 계산기', calValue: 'calAge' });
+          setActiveCal('calAge');
+        }}
+
+        
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">
             <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">💰</div>
             <h3 className="text-lg font-semibold mb-2"> 만 나이 계산기 </h3>
             <p className="text-gray-600"> 생년월일 입력 </p>
         </div>
-        {open &&(
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+
+
+        {activeCal === 'calAge' && (
+            <div id="calAgeModal" className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg w-96 relative">
-              <button onClick={() => setOpen(false)} className="absolute top-3 right-3 text-gray-500">✕</button>
+              <button
+              onClick={() => setActiveCal('')} // 모달 닫기
+              className="absolute top-3 right-3 text-gray-500">
+                ✕
+                </button>
               <h2 className="text-xl font-semibold mb-4"> 만 나이 계산기 </h2>
               
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -44,7 +58,10 @@ export default function CalcAge() {
                 onChange={e => setBirth(e.target.value)}
               />
 
-              <button className="w-full bg-blue-600 text-white p-2 rounded" onClick={calculate}>
+              <button 
+              className="w-full bg-blue-600 text-white p-2 rounded" 
+              id="calAge"
+              onClick={calculate}>
                 계산
               </button>
   

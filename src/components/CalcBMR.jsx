@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { calculateBMR } from '../utils/BMR';
 import { Helmet } from 'react-helmet';
+import { saveHistory } from '../utils/history'; // DOM용
 
-export default function CalcBMR() {
+export default function CalcBMR({ activeCal, setActiveCal }) {
   const [open, setOpen] = useState(false);
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
@@ -25,7 +26,10 @@ export default function CalcBMR() {
         <meta property="og:description" content="키와 몸무게로 기초대사량을 계산해 보세요." />
       </Helmet>
       <div
-        onClick={() => setOpen(true)}
+        onClick={() =>{
+          saveHistory({ title: 'BMR 계산기', calValue: 'calBMR' });
+          setActiveCal('calBMR');
+        }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer"
       >
         <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">💰</div>
@@ -33,10 +37,12 @@ export default function CalcBMR() {
         <p className="text-gray-600">키, 몸무게, 나이 입력</p>
       </div>
 
-      {open && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      {activeCal === 'calBMR' && (
+        <div id="calBMRModal" className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg w-96 relative">
-            <button onClick={() => setOpen(false)} className="absolute top-3 right-3 text-gray-500">✕</button>
+            <button 
+            onClick={() => setActiveCal('')} // 모달 닫기
+             className="absolute top-3 right-3 text-gray-500">✕</button>
             <h2 className="text-xl font-semibold mb-4">BMR 계산기</h2>
 
             <input
@@ -80,7 +86,10 @@ export default function CalcBMR() {
               </label>
             </div>
 
-            <button className="w-full bg-blue-600 text-white p-2 rounded" onClick={calculate}>
+            <button 
+            className="w-full bg-blue-600 text-white p-2 rounded" 
+            id="calBMR" // id는 history용
+            onClick={calculate}>
               계산
             </button>
 

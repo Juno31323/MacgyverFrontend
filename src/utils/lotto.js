@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 
 // 번호 6 개 생성

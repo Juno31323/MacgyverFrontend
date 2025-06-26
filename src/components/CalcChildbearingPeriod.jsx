@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { calculateChildbearingP } from '../utils/childbearingPeriod';
 import { Helmet } from 'react-helmet';
+import { saveHistory } from '../utils/history'; // DOM용
 
-export default function CalcChildbearing() {
+export default function CalcChildbearing({ activeCal, setActiveCal }) {
     const [open, setOpen] = useState(false);
     const [lastMenstrual, setLastMenstrual] = useState('');
     const [menstrualCycle, setMenstrualCycle] = useState('');
@@ -23,16 +24,21 @@ export default function CalcChildbearing() {
           <meta property="og:description" content="마지막 생리일과 생리주기를 입력하면 가임기를 계산해 드립니다." />
         </Helmet>
         <div 
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          saveHistory({ title: '가임기 계산기', calValue: 'calChildbearingPeriod' });
+          setActiveCal('calChildbearingPeriod')
+        }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">
             <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">💰</div>
             <h3 className="text-lg font-semibold mb-2">가임기 계산기</h3>
             <p className="text-gray-600">마지막 생리, 생리주기 입력</p>
         </div>
-        {open &&(
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        {activeCal === 'calChildbearingPeriod' &&(
+            <div  id="calChildbearingPeriodModal" className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg w-96 relative">
-              <button onClick={() => setOpen(false)} className="absolute top-3 right-3 text-gray-500">✕</button>
+              <button 
+              onClick={() => setActiveCal('')} // 모달 닫기
+              className="absolute top-3 right-3 text-gray-500">✕</button>
               <h2 className="text-xl font-semibold mb-4">가임기 계산기</h2>
               
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -50,7 +56,10 @@ export default function CalcChildbearing() {
                 onChange={e => setMenstrualCycle(e.target.value)}
               />
               
-              <button className="w-full bg-blue-600 text-white p-2 rounded" onClick={calculate}>
+              <button 
+              className="w-full bg-blue-600 text-white p-2 rounded" 
+              id='calChildbearingPeriod' // id는 history용
+              onClick={calculate}>
                 계산
               </button>
   

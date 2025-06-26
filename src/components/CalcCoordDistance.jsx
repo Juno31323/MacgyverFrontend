@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { CalculateDistance } from '../utils/distance';
 import { Helmet } from 'react-helmet';
+import { saveHistory } from '../utils/history';
 
-export default function CalcCoordDistance() {
+export default function CalcCoordDistance({ activeCal, setActiveCal }) {
     const [open, setOpen] = useState(false);
     const [start, setStart] = useState(['', '']);
     const [end, setEnd] = useState(['', '']); 
@@ -23,16 +24,21 @@ export default function CalcCoordDistance() {
           <meta property="og:description" content="시작점과 끝점 좌표를 입력하면 두 좌표간의 거리를 계산해 드립니디." />
         </Helmet>
         <div 
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          saveHistory({ title: '좌표간 거리 계산기', calValue: 'calCoordDistance' });
+          setActiveCal('calCoordDistance');
+        }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">
             <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">💰</div>
             <h3 className="text-lg font-semibold mb-2"> 좌표간 거리 계산기 </h3>
             <p className="text-gray-600"> 시작점, 끝점 입력 </p>
         </div>
-        {open &&(
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        {activeCal === 'calCoordDistance' &&(
+            <div id='calCoordDistance' className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg w-96 relative">
-              <button onClick={() => setOpen(false)} className="absolute top-3 right-3 text-gray-500">✕</button>
+              <button 
+              onClick={() => setActiveCal('')} // 모달 닫기
+              className="absolute top-3 right-3 text-gray-500">✕</button>
               <h2 className="text-xl font-semibold mb-4"> 좌표간 거리 계산기 </h2>
               
               <label className="block text-sm font-medium text-gray-700 mb-1">시작점 좌표</label>

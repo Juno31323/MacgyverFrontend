@@ -1,4 +1,5 @@
 import { useHistory } from '../hooks/useHistory';
+import HistoryList from './HistoryList';
 
 export default function Layout({ children, setActiveCal}) {
   const historyList = useHistory();
@@ -23,16 +24,7 @@ export default function Layout({ children, setActiveCal}) {
             <div className="hidden group-hover:block absolute right-0 w-72 bg-white shadow-xl p-4 rounded-lg z-50">
               <h3 className="font-semibold mb-2">히스토리</h3>
               <div className="text-sm space-y-2" id="historyContainer">
-                {historyList.map((item) => (
-                  <div
-                    key={item.id}
-                    className="historyModalOpenButton p-2 hover:bg-gray-50 rounded cursor-pointer"
-                    onClick={() => handleHistoryClick(item.calValue)}
-                  >
-                    {item.title}
-                  </div>
-                ))}
-
+                <HistoryList historyList={historyList} onItemClick={handleHistoryClick}/>
               </div>
             </div>
           </div>

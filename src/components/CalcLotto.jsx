@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import generateLotto from "../utils/lotto";
 import { Helmet } from "react-helmet";
+import { saveHistory } from '../utils/history'; // DOM용
 
-export default function CalcLotto() {
-  const [open, setOpen] = useState(false);
+export default function CalcLotto({trigger}) {
   const [result, setResult] = useState(null);
   // 10회 로또 돌고 있을 때, 다시 버튼 못 누르게 하려고 활성화 상태 저장
   const [isDrawing, setIsDrawing] = useState(false);
@@ -12,6 +12,16 @@ export default function CalcLotto() {
     const lotto = generateLotto(); // 5세트 번호 배열
     setResult(lotto);
   };
+
+  const [open, setOpen] = useState(false);
+
+  // 카푸어에서 모달 오픈
+  useEffect(() => {
+    if (trigger) {
+      setOpen(true);
+    }
+  }, [trigger]);
+
 
   // 모달 닫히면 결과 초기화
   useEffect(() => {
@@ -74,7 +84,10 @@ export default function CalcLotto() {
 
       {/* 메인 로또 카드 */}
       <div
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          saveHistory({ title: '로또번호 추출', calValue: 'calLotto' });
+          setOpen(true);
+        }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton"
       >
         <div className="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center">
@@ -89,7 +102,7 @@ export default function CalcLotto() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg w-96 relative">
             <button
-              onClick={() => setOpen(false)}
+              onClick={() => setOpen(false)} 
               className="absolute top-3 right-3 text-gray-500"
             >
               ✕
@@ -99,12 +112,14 @@ export default function CalcLotto() {
               className="w-full bg-green-600 text-white p-2 rounded mt-2"
               onClick={handleMultiDraw}
               disabled={isDrawing}
+              id="calLotto" // id는 history용
             >
               {" "}
               💥 10회 재물 추출
             </button>
             <button
               className="w-full bg-blue-600 text-white p-2 rounded mt-2"
+              id="calLotto" // id는 history용
               onClick={() => {
                 playBeep();
                 calculate();

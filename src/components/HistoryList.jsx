@@ -1,8 +1,5 @@
-// src/components/HistoryList.jsx
-import { useHistory } from '../hooks/useHistory';
 
-export default function HistoryList({ onItemClick }) {
-  const historyList = useHistory();
+export default function HistoryList({ historyList, onItemClick }) {
 
   return (
     <>

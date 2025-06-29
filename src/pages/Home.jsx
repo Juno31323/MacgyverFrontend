@@ -32,6 +32,7 @@ export default function Home() {
         <CheckMyIp activeCal={activeCal} setActiveCal={setActiveCal} />
         <ConvTemp activeCal={activeCal} setActiveCal={setActiveCal} />
         <CalcCarpoor activeCal={activeCal} setActiveCal={setActiveCal} />
+        {/* <CalcLotto activeCal={activeCal} setActiveCal={setActiveCal} /> */}
       </div>
     </Layout>
   );

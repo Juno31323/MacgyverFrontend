@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { carpoor as calculateCarpoor } from '../utils/carpoor';
 import { Helmet } from 'react-helmet';
 import CarSlider from './CarSlider';
-import LottoModal from './CalcLotto';
+import CalcLotto from './CalcLotto';
 import { saveHistory } from '../utils/history'; // DOM용
 
 export default function CalCarpoor({ activeCal, setActiveCal }) {
@@ -10,12 +10,22 @@ export default function CalCarpoor({ activeCal, setActiveCal }) {
   const [model, setModel] = useState('');
   const [country, setCountry] = useState('');
   const [result, setResult] = useState(null);
-  const [showLottoModal, setShowLottoModal] = useState(false);
+  const [lottoTrigger, setLottoTrigger] = useState(false);
 
 
   // 계산 버튼 클릭 시 실행
   const calculate = async (e) => {
     const res = await calculateCarpoor(salary, model, country);
+    
+    if (!country) {
+      alert("국가를 선택해주세요.");
+      return;
+    }
+    if (!salary || Number(salary) <= 0) {
+      alert("연봉을 올바르게 입력해주세요.");
+      return;
+    }
+
     setResult(res);
 
   }
@@ -28,6 +38,12 @@ export default function CalCarpoor({ activeCal, setActiveCal }) {
     setResult(null);
     setShowLottoModal(false);
   };
+
+  // 카푸어에서 로또 열기기
+    const handleOpenLotto = () => {
+    setLottoTrigger(prev => !prev);
+  };
+
 
   return (
     <>
@@ -51,9 +67,6 @@ export default function CalCarpoor({ activeCal, setActiveCal }) {
         <h3 className="text-lg font-semibold mb-2" id="calCarpoor">카푸어 계산기</h3>
         <p className="text-gray-600">어디까지 가능할까?</p>
       </div>
-
-      {/* 모달 렌더링 */}
-      <LottoModal open={showLottoModal} onClose={() => setShowLottoModal(false)} />
 
       {activeCal === 'calCarpoor' && (
         <div id="calCarpoorModal" className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -93,9 +106,12 @@ export default function CalCarpoor({ activeCal, setActiveCal }) {
               <button
                 className="w-full bg-blue-600 text-white px-4 py-2 rounded"
                 onClick={() => {
-                  handleClose('');
-                  setShowLottoModal(true);
-                }}
+                  // 기존 모달 닫기
+                  setActiveCal('');
+
+                  //로또 모달 열기
+                    handleOpenLotto();
+              }}
               >
                 로또 가즈아
               </button>
@@ -103,6 +119,8 @@ export default function CalCarpoor({ activeCal, setActiveCal }) {
           </div>
         </div>
       )}
+
+      <CalcLotto trigger={lottoTrigger} />
     </>
   );
 }

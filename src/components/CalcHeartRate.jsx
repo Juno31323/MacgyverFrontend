@@ -8,8 +8,12 @@ export default function CalcHeratRate({ activeCal, setActiveCal }) {
     const [result, setResult] = useState(null);
 
     const calculate = () => {
-            const targetHeartRate = calcultaeTargetHeartRate(age);
-            setResult(targetHeartRate);
+      if(age ===""){
+        alert("나이를 입력해주세요.");
+        return;
+      }
+      const targetHeartRate = calcultaeTargetHeartRate(age);
+      setResult(targetHeartRate);
     };
 
     return (

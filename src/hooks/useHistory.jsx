@@ -17,7 +17,6 @@ export function useHistory() {
     loadHistory(); // 최초 로딩
 
     // 이벤트 리스너 등록
-    // history.js에서 dispatchEvent('historyUpdated') 만듦
     window.addEventListener('historyUpdated', loadHistory);
 
     // 정리(cleanup)

@@ -1,11 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import MyCalculators from './pages/MyCalculators';
-import CarSelector from './components/CarSelector'; 
+import CarSelector from './components/CarSelector';
+import OAuthCallback from './components/OAuthCallback';
+import { AuthProvider } from './AuthContext';
 
 function App() {
   return (
     <BrowserRouter>
+      <AuthProvider>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mycalculators" element={<MyCalculators />} />
@@ -18,7 +21,9 @@ function App() {
             </div>
           }
         />
+        <Route path="/oauth" element={<OAuthCallback />} />
       </Routes>
+      </AuthProvider>
     </BrowserRouter>
     
   );

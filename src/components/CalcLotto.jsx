@@ -64,7 +64,7 @@ export default function CalcLotto({trigger}) {
   const handleMultiDraw = async () => {
     if (isDrawing) return; // 중복 방지
     setIsDrawing(true);
-    speak("화성갈꺼니까 시발");
+    speak("화성갈꺼니까");
     for (let i = 0; i < 10; i++) {
       await new Promise((res) => setTimeout(res, 200));
       calculate();

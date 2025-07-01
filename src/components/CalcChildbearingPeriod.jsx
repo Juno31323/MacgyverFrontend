@@ -10,8 +10,16 @@ export default function CalcChildbearing({ activeCal, setActiveCal }) {
     const [result, setResult] = useState(null);
 
     const calculate = () => {
-            const childbearingPeriod = calculateChildbearingP(menstrualCycle, lastMenstrual);
-            setResult(childbearingPeriod);
+      if(lastMenstrual ===""){
+        alert("마지막 생일을 입력해주세요.");
+        return;
+      }
+      if(menstrualCycle ===""){
+        alert("생리주기를 입력해주세요.");
+        return;
+      }
+      const childbearingPeriod = calculateChildbearingP(menstrualCycle, lastMenstrual);
+      setResult(childbearingPeriod);
     };
 
     return (

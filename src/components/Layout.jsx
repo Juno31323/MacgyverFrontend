@@ -1,5 +1,6 @@
 import { useHistory } from '../hooks/useHistory';
 import HistoryList from './HistoryList';
+import KakaoRedirectLoginButton from './kakaoLogin';
 
 export default function Layout({ children, setActiveCal}) {
   const historyList = useHistory();
@@ -27,6 +28,7 @@ export default function Layout({ children, setActiveCal}) {
                 <HistoryList historyList={historyList} onItemClick={handleHistoryClick}/>
               </div>
             </div>
+            <KakaoRedirectLoginButton/>
           </div>
 
           {/* 알림 */}

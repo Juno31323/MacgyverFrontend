@@ -6,6 +6,12 @@ export function calculateAge(birth){
     let birthMMDD = birthday.getMonth()*100 + birthday.getDate();
     let yourAge = today.getFullYear() - birthday.getFullYear();
 
+
+    if (birthday > today) {
+        alert("생일이 오늘 이후일 수 없습니다.");
+        return ;
+      }
+
     if(todayMMDD - birthMMDD < 0){
         yourAge -= 1;
     }

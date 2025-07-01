@@ -2,14 +2,18 @@ import { useState } from 'react';
 import { calculateAge } from '../utils/age';
 import { Helmet } from 'react-helmet';
 import { saveHistory } from '../utils/history'; // DOM용
-
+import { useDateInput } from '../hooks/useDateInput';
 
 export default function CalcAge({ activeCal, setActiveCal }) {
     const [open, setOpen] = useState(false);
-    const [birth, setBirth ] = useState('');
     const [result, setResult] = useState(null);
+    const {birth, onChange, max } = useDateInput();
 
     const calculate = () => {
+            if(birth === ""){
+              alert("생년월일이 입력되지 않았습니다.");
+              return;
+            }
             const CalcAge= calculateAge(birth);
             setResult(CalcAge);
     };
@@ -53,9 +57,11 @@ export default function CalcAge({ activeCal, setActiveCal }) {
                 생년월일
               </label>
               <input
+                value={birth}
                 type="date"
                 className="w-full mb-2 p-2 border rounded"
-                onChange={e => setBirth(e.target.value)}
+                onChange={onChange}
+                max={max}
               />
 
               <button 

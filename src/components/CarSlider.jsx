@@ -27,7 +27,7 @@ export default function CarSlider({ country, onSelectModel }) {
 
   useEffect(() => {
     if (containerRef.current) {
-      const slideWidth = 300;
+      const slideWidth = 200;
       containerRef.current.style.transition = 'transform 0.5s ease';
       containerRef.current.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
     }
@@ -49,30 +49,35 @@ export default function CarSlider({ country, onSelectModel }) {
   };
 
   if (!country) return null;
+  
 
   return (
     <div className="relative">
       <div className="slide-wrapper flex justify-between mb-2 items-center">
-        <button onClick={handlePrev} className="prev btn text-2xl px-2">◀</button>
-        <div className="overflow-hidden w-[300px] mx-2">
+        <button onClick={handlePrev} className="prev btn px-2">◀</button>
+        <div className="overflow-hidden w-[200px] mx-2">
           <div
             ref={containerRef}
             className="flex"
-            style={{ width: `${carList.length * 300}px` }}
+            style={{ 
+              width: `${carList.length * 200}px`,
+              display: 'flex',
+              alignItems: 'center'
+            }}
           >
             {carList.map((car, i) => (
               <div
                 key={i}
                 className={`flex-none text-center ${i === currentSlide ? 'ring-4 ring-blue-500 scale-105' : 'opacity-70'}`}
-                style={{ width: 300 }}
+                style={{ width: 200 }}
               >
-                <img src={car.photo} alt={car.model} className="mx-auto h-48 object-cover rounded" />
-                <p className="mt-2 font-semibold">{car.model}</p>
+                <img src={car.photo} alt={car.model} className="mx-auto h-48 rounded" />
+                <p className="mt-2 mb-2 font-semibold">{car.model}</p>
               </div>
             ))}
           </div>
         </div>
-        <button onClick={handleNext} className="next btn text-2xl px-2">▶</button>
+        <button onClick={handleNext} className="next btn px-2">▶</button>
       </div>
     </div>
   );

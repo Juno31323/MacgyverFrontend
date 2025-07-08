@@ -49,7 +49,6 @@ export default function CarSlider({ country, onSelectModel }) {
   };
 
   if (!country) return null;
-  
 
   return (
     <div className="relative">

@@ -11,6 +11,7 @@ export default function CalcBMI({ activeCal, setActiveCal }) {
   const calculate = () => {
     const bmi = calculateBMI(weight, height);
     setResult(bmi);
+    saveHistory({ title: 'BMI 계산기', calValue: 'calBMI' });
   };
 
   return (
@@ -26,7 +27,7 @@ export default function CalcBMI({ activeCal, setActiveCal }) {
       {/* 카드 클릭 → 모달 열기 */}
       <div
         onClick={() => {
-          saveHistory({ title: 'BMI 계산기', calValue: 'calBMI' });
+          
           setActiveCal('calBMI');
         }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer"

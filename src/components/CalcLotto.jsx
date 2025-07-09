@@ -70,6 +70,7 @@ export default function CalcLotto({trigger}) {
       calculate();
     }
     setIsDrawing(false);
+    saveHistory({ title: '로또번호 추출', calValue: 'calLotto' });
   };
 
   return (
@@ -85,7 +86,7 @@ export default function CalcLotto({trigger}) {
       {/* 메인 로또 카드 */}
       <div
         onClick={() => {
-          saveHistory({ title: '로또번호 추출', calValue: 'calLotto' });
+          
           setOpen(true);
         }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton"

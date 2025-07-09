@@ -14,6 +14,7 @@ export default function CalcHeratRate({ activeCal, setActiveCal }) {
       }
       const targetHeartRate = calcultaeTargetHeartRate(age);
       setResult(targetHeartRate);
+      saveHistory({ title: '목표 심박수 계산기', calValue: 'calHeartRate' });
     };
 
     return (
@@ -27,7 +28,7 @@ export default function CalcHeratRate({ activeCal, setActiveCal }) {
         </Helmet>
         <div 
         onClick={() => {
-          saveHistory({ title: '목표 심박수 계산기', calValue: 'calHeartRate' });
+          
           setActiveCal('calHeartRate');
         }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

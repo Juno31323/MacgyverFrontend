@@ -13,6 +13,7 @@ export default function CalcCalorie({ activeCal, setActiveCal }) {
     const calculate = () => {
         const calorie = calculateCalorie(weight, exerciseTime, excersise);
         setResult(calorie);
+        saveHistory({ title: '칼로리 계산기', calValue: 'calCalorie' });
     };
 
     return(
@@ -26,7 +27,7 @@ export default function CalcCalorie({ activeCal, setActiveCal }) {
         </Helmet>
         <div 
         onClick={() => {
-          saveHistory({ title: '칼로리 계산기', calValue: 'calCalorie' });
+          
           setActiveCal('calCalorie');
         }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

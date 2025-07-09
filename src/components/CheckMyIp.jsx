@@ -9,6 +9,7 @@ export default function CheckMyIp({ activeCal, setActiveCal }) {
     const calculate = async () => {
         const ip = await getIp();
         setResult(ip);
+        saveHistory({ title: '내 IP 주소 확인하기', calValue: 'CheckMyIp' });
       };
     return (
         <>
@@ -21,7 +22,7 @@ export default function CheckMyIp({ activeCal, setActiveCal }) {
         </Helmet>
         <div 
         onClick={() => { 
-          saveHistory({ title: '내 IP 주소 확인하기', calValue: 'CheckMyIp' });
+          
           setActiveCal('CheckMyIp');
         }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

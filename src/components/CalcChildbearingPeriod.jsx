@@ -20,6 +20,7 @@ export default function CalcChildbearing({ activeCal, setActiveCal }) {
       }
       const childbearingPeriod = calculateChildbearingP(menstrualCycle, lastMenstrual);
       setResult(childbearingPeriod);
+      saveHistory({ title: '가임기 계산기', calValue: 'calChildbearingPeriod' });
     };
 
     return (
@@ -33,7 +34,7 @@ export default function CalcChildbearing({ activeCal, setActiveCal }) {
         </Helmet>
         <div 
         onClick={() => {
-          saveHistory({ title: '가임기 계산기', calValue: 'calChildbearingPeriod' });
+          
           setActiveCal('calChildbearingPeriod')
         }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

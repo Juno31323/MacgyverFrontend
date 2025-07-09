@@ -16,6 +16,7 @@ export default function CalcAge({ activeCal, setActiveCal }) {
             }
             const CalcAge= calculateAge(birth);
             setResult(CalcAge);
+            saveHistory({ title: '나이 계산기', calValue: 'calAge' });
     };
 
     return (
@@ -31,7 +32,7 @@ export default function CalcAge({ activeCal, setActiveCal }) {
         <div 
         onClick={() => 
           {setOpen(true);
-          saveHistory({ title: '나이 계산기', calValue: 'calAge' });
+          
           setActiveCal('calAge');
         }}
 

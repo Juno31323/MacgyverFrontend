@@ -15,7 +15,7 @@ export default function CalcLoan({ activeCal, setActiveCal }) {
     const calculate = () => {
             const loan = calculateLoan( rawValue, interestRate, period );
             setResult( loan );
-
+            saveHistory({title : '이자 계산기', calValue : 'calLoan'});
     };
 
     return (
@@ -29,7 +29,7 @@ export default function CalcLoan({ activeCal, setActiveCal }) {
         </Helmet>
         <div 
         onClick={() => {
-          saveHistory({title : '이자 계산기', calValue : 'calLoan'});
+          
           setActiveCal('calLoan')
         }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

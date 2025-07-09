@@ -27,7 +27,7 @@ export default function CalCarpoor({ activeCal, setActiveCal }) {
     }
 
     setResult(res);
-
+    saveHistory({ title: '카푸어 계산기', calValue: 'calCarpoor' });
   }
 
     // 상태 초기화 + 모달 닫기
@@ -36,7 +36,7 @@ export default function CalCarpoor({ activeCal, setActiveCal }) {
     setModel('');
     setCountry('');
     setResult(null);
-    setShowLottoModal(false);
+
   };
 
   // 카푸어에서 로또 열기기
@@ -57,7 +57,7 @@ export default function CalCarpoor({ activeCal, setActiveCal }) {
 
       <div
         onClick={() => {
-          saveHistory({ title: '카푸어 계산기', calValue: 'calCarpoor' });
+          
           setActiveCal('calCarpoor');
 
         }}

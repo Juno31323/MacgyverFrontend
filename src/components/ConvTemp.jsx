@@ -20,6 +20,7 @@ export default function ConvTemp({ activeCal, setActiveCal }) {
             const CTemp = tempConversion(temp, beforeUnit, afterUnit);
             console.log(temp,beforeUnit,afterUnit);
             setResult( CTemp );
+            saveHistory({ title: '온도 단위 변환기', calValue: 'ConvTemp' });
     };
 
     return (
@@ -33,7 +34,7 @@ export default function ConvTemp({ activeCal, setActiveCal }) {
         </Helmet>
         <div 
         onClick={() => {
-          saveHistory({ title: '온도 단위 변환기', calValue: 'ConvTemp' });
+          
           setActiveCal('ConvTemp');
         }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">

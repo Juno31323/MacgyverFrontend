@@ -14,6 +14,7 @@ export default function CalcBMR({ activeCal, setActiveCal }) {
   const calculate = () => {
     const bmr = calculateBMR(gender, height, weight, age);
     setResult(bmr);
+    saveHistory({ title: 'BMR 계산기', calValue: 'calBMR' });
   };
 
   return (
@@ -27,7 +28,7 @@ export default function CalcBMR({ activeCal, setActiveCal }) {
       </Helmet>
       <div
         onClick={() =>{
-          saveHistory({ title: 'BMR 계산기', calValue: 'calBMR' });
+          
           setActiveCal('calBMR');
         }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer"

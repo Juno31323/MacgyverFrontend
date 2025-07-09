@@ -1,8 +1,10 @@
 import { useHistory } from '../hooks/useHistory';
 import HistoryList from './HistoryList';
-import KakaoRedirectLoginButton from './kakaoLogin';
+import { useAuth } from '../AuthContext';
+import UserMenu from './UserMenu';
 
 export default function Layout({ children, setActiveCal}) {
+  const { token } = useAuth();
   const historyList = useHistory();
 
     const handleHistoryClick = (calValue) => {
@@ -28,9 +30,8 @@ export default function Layout({ children, setActiveCal}) {
                 <HistoryList historyList={historyList} onItemClick={handleHistoryClick}/>
               </div>
             </div>
-            <KakaoRedirectLoginButton/>
           </div>
-
+          
           {/* 알림 */}
           <div className="relative group">
             <button className="p-2 hover:bg-gray-100 rounded-full">
@@ -46,7 +47,20 @@ export default function Layout({ children, setActiveCal}) {
           </div>
 
           {/* 유저 아이콘 */}
-          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">👤</div>
+          <div>
+          {token ? (
+              <UserMenu />
+            ) : (
+              <button
+                onClick={() =>
+                  (window.location.href = 'http://localhost:8080/oauth2/authorization/kakao')
+                }
+                className="bg-yellow-400 px-4 py-2 rounded"
+              >
+                로그인
+              </button>
+            )}
+          </div>
         </div>
       </header>
 

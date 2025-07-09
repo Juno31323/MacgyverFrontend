@@ -13,6 +13,7 @@ export default function CalcNormalWeight({ activeCal, setActiveCal }) {
     const calculate = () => {
             const normalWeight = calculateNormalWeight(weight);
             setResult(normalWeight);
+            saveHistory({ title: '정상 체중 계산기', calValue: 'calNormalWeight' });
     };
 
     return (
@@ -26,7 +27,7 @@ export default function CalcNormalWeight({ activeCal, setActiveCal }) {
         </Helmet>
         <div 
         onClick={() => {
-          saveHistory({ title: '정상 체중 계산기', calValue: 'calNormalWeight' });
+          
           setActiveCal('calNormalWeight');
 
         }}

@@ -12,6 +12,7 @@ export default function CalcCoordDistance({ activeCal, setActiveCal }) {
     const calculate = () => {
             const coordDistance= CalculateDistance( start, end ).toFixed(2);
             setResult( coordDistance );
+            saveHistory({ title: '좌표간 거리 계산기', calValue: 'calCoordDistance' });
     };
 
     return (
@@ -25,7 +26,7 @@ export default function CalcCoordDistance({ activeCal, setActiveCal }) {
         </Helmet>
         <div 
         onClick={() => {
-          saveHistory({ title: '좌표간 거리 계산기', calValue: 'calCoordDistance' });
+          
           setActiveCal('calCoordDistance');
         }}
         className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow modalOpenButton">
